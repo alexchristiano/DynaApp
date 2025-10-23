@@ -1,0 +1,391 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Admin page and login styles */
+.admin-root {
+  display: flex;
+  min-height: 100vh;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ffffff; /* white background for main area */
+  color: #000; /* black font on white bg */
+  overflow: hidden; /* prevent double scrollbars */
+}
+
+.side-menu {
+  position: relative;
+  width: 260px;
+  min-height: 100vh;
+  height: 100%;
+  background: #ff8000; /* orange */
+  color: #fff;
+  transition: transform 0.4s ease;
+  padding: 12px;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.side-menu.hidden {
+  transform: translateX(-100%);
+}
+
+.side-menu.visible {
+  transform: translateX(0);
+}
+
+.side-menu .menu-toggle {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.admin-main {
+  flex: 1;
+  padding: 28px;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.admin-main h1 { 
+  margin-top: 8px;
+  font-size: 1.8em;
+  color: var(--theme-heading, #1a1a1a);
+}
+
+.setting { 
+  margin: 16px 0; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 8px; 
+  max-width: 480px;
+  background: var(--setting-bg, rgba(255,255,255,0.5));
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--setting-border, rgba(0,0,0,0.05));
+  transition: all 0.2s ease;
+}
+
+.setting:hover {
+  border-color: var(--setting-border-hover, rgba(0,0,0,0.1));
+  box-shadow: 0 2px 8px var(--setting-shadow-hover, rgba(0,0,0,0.03));
+}
+
+.setting label { 
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--theme-label, #2a2a2a);
+}
+
+.setting input[type="text"],
+.setting input[type="number"],
+.setting select { 
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--input-border, #ddd);
+  background: var(--input-bg, white);
+  color: var(--input-text, #2a2a2a);
+  transition: all 0.2s;
+}
+
+.setting input[type="text"]:focus,
+.setting input[type="number"]:focus,
+.setting select:focus {
+  outline: none;
+  border-color: var(--theme-primary);
+  box-shadow: 0 0 0 2px var(--theme-primary-alpha);
+}
+
+/* Theme-specific input styling */
+.theme-dark {
+  --theme-heading: #e6eef8;
+  --theme-label: #c5d1e1;
+  --setting-bg: rgba(255,255,255,0.02);
+  --setting-border: rgba(255,255,255,0.05);
+  --setting-border-hover: rgba(255,255,255,0.1);
+  --setting-shadow-hover: rgba(0,0,0,0.2);
+  --input-border: rgba(255,255,255,0.1);
+  --input-bg: rgba(0,0,0,0.2);
+  --input-text: #e6eef8;
+  --theme-primary-alpha: rgba(255,159,67,0.2);
+}
+
+.theme-light {
+  --theme-heading: #1a1a1a;
+  --theme-label: #2a2a2a;
+  --setting-bg: white;
+  --setting-border: rgba(0,0,0,0.05);
+  --setting-border-hover: rgba(0,0,0,0.1);
+  --setting-shadow-hover: rgba(0,0,0,0.05);
+  --input-border: #ddd;
+  --input-bg: white;
+  --input-text: #2a2a2a;
+  --theme-primary-alpha: rgba(255,128,0,0.2);
+}
+
+.theme-grey {
+  --theme-heading: #111827;
+  --theme-label: #374151;
+  --setting-bg: white;
+  --setting-border: #e5e7eb;
+  --setting-border-hover: #d1d5db;
+  --setting-shadow-hover: rgba(0,0,0,0.03);
+  --input-border: #e5e7eb;
+  --input-bg: white;
+  --input-text: #111827;
+  --theme-primary-alpha: rgba(249,115,22,0.2);
+}
+.setting input[type="text"], .setting select, .setting input[type="number"] { padding:8px; border-radius:6px; border:1px solid #ddd }
+
+/* Login layout: left orange bar and right white form */
+.login-root { display:flex; min-height:100vh; }
+.login-left { width:40%; background:#ff8000; }
+.login-right { flex:1; display:flex; align-items:center; justify-content:center; background:#fff; }
+.login-card { background:transparent; border-radius:12px; padding:24px; width:360px; box-shadow:0 2px 10px rgba(0,0,0,0.08); opacity:0; transform:translateY(8px); transition:opacity 600ms ease, transform 600ms ease }
+.login-card.visible { opacity:1; transform:translateY(0) }
+.login-card h2 { color:#000; margin-bottom:12px }
+.login-form { display:flex; flex-direction:column; gap:10px }
+.login-form input { padding:10px; border-radius:8px; border:1px solid #ccc }
+.login-form button { padding:10px; background:#ff8000; color:#fff; border:none; border-radius:8px; cursor:pointer }
+
+/* Transition overlay for login->admin */
+.transition-overlay { position:fixed; left:0; top:0; right:0; bottom:0; pointer-events:none; z-index:9999 }
+.transition-overlay.zoomout { animation-name:transition-zoomout; animation-fill-mode:forwards }
+.transition-overlay.zoomin { animation-name:transition-zoomin; animation-fill-mode:forwards }
+.transition-overlay.fadein { animation-name:transition-fadein; animation-fill-mode:forwards }
+.transition-overlay.fadeout { animation-name:transition-fadeout; animation-fill-mode:forwards }
+
+@keyframes transition-zoomout {
+  from { transform: scale(0.6); opacity: 0 }
+  to { transform: scale(1); opacity: 1; background: rgba(0,0,0,0.0) }
+}
+
+@keyframes transition-zoomin {
+  from { transform: scale(1.2); opacity: 0 }
+  to { transform: scale(1); opacity: 1; background: rgba(0,0,0,0.0) }
+}
+
+@keyframes transition-fadein {
+  from { opacity: 0 }
+  to { opacity: 1; background: rgba(255,255,255,0) }
+}
+
+@keyframes transition-fadeout {
+  from { opacity: 1 }
+  to { opacity: 0; background: rgba(0,0,0,0) }
+}
+
+/* Login card CSS-based animations */
+.login-anim-zoomin { animation: login-zoomin-var var(--anim-duration, 1200ms) ease forwards }
+.login-anim-zoomout { animation: login-zoomout-var var(--anim-duration, 1200ms) ease forwards }
+.login-anim-fadein { animation: login-fadein-var var(--anim-duration, 1200ms) ease forwards }
+.login-anim-fadeout { animation: login-fadeout-var var(--anim-duration, 1200ms) ease forwards }
+
+@keyframes login-zoomin-var {
+  from { transform: scale(1); opacity: 1 }
+  to { transform: scale(1.4); opacity: 0 }
+}
+
+@keyframes login-zoomout-var {
+  from { transform: scale(1); opacity: 1 }
+  to { transform: scale(0.6); opacity: 0 }
+}
+
+@keyframes login-fadein-var {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes login-fadeout-var {
+  from { opacity: 1 }
+  to { opacity: 0 }
+}
+
+/* Menu Spacing */
+.menu-spacing {
+  height: 260px; /* Same as default menuWidth */
+  min-height: 260px;
+}
+
+.menu-items {
+  padding: 16px;
+}
+
+.menu-item {
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.menu-item.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+/* Admin preview transitions */
+.admin-preview-welcome { opacity: 1; transition: opacity 400ms ease }
+.admin-preview-login { opacity: 0.2; transform: scale(0.98); transition: opacity 400ms ease, transform 400ms ease }
+
+/* Theme: dark */
+.theme-dark { background:#0f1720; color:#e6eef8 }
+.theme-dark .admin-main { background: #0f1720; color:#e6eef8 }
+.theme-dark .login-right { background: #0b1220 }
+.theme-dark .login-card { box-shadow: 0 4px 18px rgba(0,0,0,0.6); background: rgba(255,255,255,0.02) }
+.theme-dark input, .theme-dark select { background:#0f1720; color:#e6eef8; border:1px solid rgba(255,255,255,0.06) }
+
+.theme-dark .side-menu { background:#b45309; }
+.theme-dark .side-menu .menu-toggle { background: rgba(255,255,255,0.06); color:#fff }
+.theme-dark .login-form input, .theme-dark input, .theme-dark select { background:#0b1220; color:#e6eef8 }
+.theme-dark .login-form button, .theme-dark button { background:#ff9f43; color:#0b1220 }
+
+
+/* Theme: grey */
+.theme-grey { background:#f3f4f6; color:#111827 }
+.theme-grey .admin-main { background: #f3f4f6; color:#111827 }
+.theme-grey .login-right { background: #f8fafc }
+.theme-grey .login-card { box-shadow: 0 2px 8px rgba(0,0,0,0.06); background: #fff }
+.theme-grey input, .theme-grey select { background:#fff; color:#111827; border:1px solid #e5e7eb }
+
+.theme-grey .side-menu { background:#f97316; color:#fff }
+.theme-grey .side-menu .menu-toggle { background: rgba(255,255,255,0.12); color:#fff }
+.theme-grey .login-form input, .theme-grey input, .theme-grey select { background:#fff; color:#111827 }
+.theme-grey .login-form button, .theme-grey button { background:#fb923c; color:#fff }
+
+/* side-menu resizer styling */
+
+.menu-resizer { 
+  position: absolute; 
+  right: -6px; 
+  top: 0; 
+  bottom: 0; 
+  width: 12px; 
+  cursor: ew-resize;
+  transition: background-color 0.2s;
+}
+
+.menu-resizer:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.menu-arrow { 
+  position: absolute; 
+  right: -24px; 
+  top: 50%; 
+  transform: translateY(-50%);
+  width: 24px; 
+  height: 36px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  background: var(--menu-arrow-bg, rgba(0,0,0,0.05)); 
+  border-radius: 4px; 
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.3s ease;
+}
+
+.menu-arrow:hover {
+  background: var(--menu-arrow-hover-bg, rgba(0,0,0,0.1));
+}
+
+.menu-arrow.expanded svg {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.menu-arrow.collapsed svg {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+/* Cropper toolbar */
+.crop-toolbar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+  background: rgba(0,0,0,0.05);
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.crop-toolbar button {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: white;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.2s;
+}
+
+.crop-toolbar button:hover {
+  background: var(--theme-primary, #ff8000);
+  color: white;
+  border-color: transparent;
+}
+
+/* Theme-specific variables */
+.theme-dark {
+  --menu-arrow-bg: rgba(255,255,255,0.05);
+  --menu-arrow-hover-bg: rgba(255,255,255,0.1);
+  --theme-primary: #ff9f43;
+}
+
+.theme-light {
+  --menu-arrow-bg: rgba(0,0,0,0.05);
+  --menu-arrow-hover-bg: rgba(0,0,0,0.1);
+  --theme-primary: #ff8000;
+}
+
+.theme-grey {
+  --menu-arrow-bg: rgba(0,0,0,0.03);
+  --menu-arrow-hover-bg: rgba(0,0,0,0.08);
+  --theme-primary: #f97316;
+}
+
+/* Admin preview classes */
+.admin-preview-welcome { opacity: 1; transform: scale(1); transition: opacity 400ms ease, transform 400ms ease }
+.admin-preview-login { opacity: 0.25; transform: scale(0.96); transition: opacity 400ms ease, transform 400ms ease }
